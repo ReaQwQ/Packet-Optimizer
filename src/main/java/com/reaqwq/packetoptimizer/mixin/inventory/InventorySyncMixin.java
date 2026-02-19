@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(HandledScreen.class)
 public class InventorySyncMixin {
-    @Inject(method = "onMouseClick", at = @At("TAIL"))
+    @Inject(method = "onMouseClick(Lnet/minecraft/screen/slot/Slot;IILnet/minecraft/screen/slot/SlotActionType;)V", at = @At("TAIL"))
     private void onSlotClick(Slot slot, int slotId, int button, SlotActionType actionType, CallbackInfo ci) {
         if (PacketOptimizerConfig.getInstance().inventorySync) {
             this.flushConnection();
