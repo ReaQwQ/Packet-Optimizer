@@ -12,8 +12,9 @@ import io.netty.channel.ChannelPipeline;
 
 @Mixin(ClientConnection.class)
 public class ClientConnectionMixin {
-    @Inject(method = "addHandlers(Lio/netty/channel/ChannelPipeline;Lnet/minecraft/network/NetworkSide;Z)V", at = @At("TAIL"))
-    private void onAddHandlers(ChannelPipeline pipeline, NetworkSide side, boolean transitions, CallbackInfo ci) {
+    @Inject(method = "addHandlers(Lio/netty/channel/ChannelPipeline;Lnet/minecraft/network/NetworkSide;ZLnet/minecraft/network/PacketSizeLog;)V", at = @At("TAIL"))
+    private static void onAddHandlers(ChannelPipeline pipeline, NetworkSide side, boolean transitions,
+            CallbackInfo ci) {
         if (side == NetworkSide.CLIENTBOUND && PacketOptimizerConfig.getInstance().tcpNoDelay) {
             pipeline.channel().config().setOption(ChannelOption.TCP_NODELAY, true);
         }
