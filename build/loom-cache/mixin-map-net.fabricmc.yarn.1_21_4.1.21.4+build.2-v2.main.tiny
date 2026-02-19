@@ -1,3 +1,0 @@
-v1	named	intermediary
-FIELD	com/reaqwq/packetoptimizer/mixin/network/NetworkIoMixin	Lio/netty/channel/Channel;	channel	field_11651
-FIELD	com/reaqwq/packetoptimizer/mixin/network/NetworkIoMixin	Lnet/minecraft/network/NetworkSide;	side	field_11643
