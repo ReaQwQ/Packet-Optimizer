@@ -1,0 +1,20 @@
+{
+    "schemaVersion": 1,
+    "id": "packet-optimizer",
+    "version": "${version}",
+    "name": "Packet Optimizer",
+    "description": "Consolidated networking and combat optimizations for 1.21.4.",
+    "authors": [
+        "reaqwq"
+    ],
+    "license": "OWNER",
+    "environment": "client",
+    "mixins": [
+        "packet-optimizer.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.16.10",
+        "minecraft": "1.21.4",
+        "java": ">=21"
+    }
+}
