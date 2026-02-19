@@ -4,7 +4,6 @@
     "compatibilityLevel": "JAVA_21",
     "mixins": [
         "network.NetworkIoMixin",
-        "network.ClientConnectionMixin",
         "combat.AttackSyncMixin",
         "combat.EntityRemovalMixin",
         "inventory.InventorySyncMixin",
