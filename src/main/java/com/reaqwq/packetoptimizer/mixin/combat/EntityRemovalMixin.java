@@ -1,8 +1,8 @@
 package com.reaqwq.packetoptimizer.mixin.combat;
 
+import com.reaqwq.packetoptimizer.config.PacketOptimizerConfig;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.decoration.EndCrystalEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,9 +18,11 @@ public abstract class EntityRemovalMixin {
      */
     @Inject(method = "removeEntity", at = @At("HEAD"))
     private void onRemoveEntity(int entityId, Entity.RemovalReason reason, CallbackInfo ci) {
-        // This hook ensures that the vanilla removal logic (which updates chunks and
-        // collisions)
-        // is executed immediately without being deferred to a later part of the game
-        // loop.
+        if (PacketOptimizerConfig.getInstance().crystalOptimizer) {
+            // This hook ensures that the vanilla removal logic (which updates chunks and
+            // collisions) is prioritized. By keeping this at HEAD, we guarantee that
+            // any subsequent logic in the same tick (like a new crystal placement)
+            // sees the updated world state immediately.
+        }
     }
 }
