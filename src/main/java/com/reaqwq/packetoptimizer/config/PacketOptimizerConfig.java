@@ -15,7 +15,6 @@ public class PacketOptimizerConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     public boolean aggressiveFlush = true;
-    public boolean tcpNoDelay = true;
     public boolean crystalOptimizer = true;
     public boolean inventorySync = true;
     public boolean earlyDecoder = true;
