@@ -14,13 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class AttackSyncMixin {
     @Inject(method = "attack", at = @At("HEAD"))
     private void onAttack(Entity target, CallbackInfo ci) {
-        if (PacketOptimizerConfig.getInstance().crystalOptimizer && target instanceof EndCrystalEntity) {
-            if (target.getWorld().isClient) {
-                target.discard();
-                MinecraftClient client = MinecraftClient.getInstance();
-                if (client.getNetworkHandler() != null && client.getNetworkHandler().getConnection() != null) {
-                    client.getNetworkHandler().getConnection().flush();
-                }
+        if (target.getWorld().isClient && PacketOptimizerConfig.getInstance().crystalOptimizer
+                && target instanceof EndCrystalEntity) {
+            target.discard();
+            MinecraftClient client = MinecraftClient.getInstance();
+            if (client.getNetworkHandler() != null && client.getNetworkHandler().getConnection() != null) {
+                client.getNetworkHandler().getConnection().flush();
             }
         }
     }
